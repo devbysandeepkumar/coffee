@@ -38,3 +38,11 @@ Ensure you have **Node.js** (v16.x or later) and **npm** installed.
 ```bash
 node -v
 npm -v
+
+echo "# coffee" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/devbysandeepkumar/coffee.git
+git push -u origin main
