@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router"
-import Home from "./features/auth/pages/Home"
+import App from "./App"
 const AppRoutes = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
   },
 ],{
   basename: '/coffee', // Must match your repository name!
