@@ -4,7 +4,5 @@ import { RouterProvider } from 'react-router'
 import AppRoutes from './app/app.routes.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={AppRoutes}>
-    <App />
-</RouterProvider>
+  <RouterProvider router={AppRoutes}/>
 )

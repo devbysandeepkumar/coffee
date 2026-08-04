@@ -1,11 +1,12 @@
 import { CgMenuRight } from "react-icons/cg";
 import { RiSearch2Fill } from "react-icons/ri";
+import logoImg from '../../../assets/logo.png'
 
 const Header = () => {
   return (
     <header className="flex justify-between items-center">
       <div className="w-28 h-10 flex items-center">
-         <img src="/logo.png" alt="" />
+         <img src={logoImg} alt="" />
       </div>
       <div className="flex gap-8">
         <div>

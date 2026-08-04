@@ -5,6 +5,8 @@ const AppRoutes = createBrowserRouter([
     path: "/",
     element: <Home />,
   },
-])
+],{
+  basename: '/coffee', // Must match your repository name!
+})
 
 export default AppRoutes

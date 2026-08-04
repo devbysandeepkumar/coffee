@@ -5,14 +5,11 @@ import { coffees } from "../../store/data"
 
 const Home = () => {
   return (
-
-    <div className="w-full h-screen bg-[#1B222C] text-white flex overflow-hidden">
-
+    <div className="w-full h-full md:h-screen lg:h-screen bg-[#1B222C] text-white flex overflow-hidden">
       <div className="fixed top-0 left-0 right-0 z-50 px-8 py-5">
         <Header />
       </div>
-
-      <div className="flex flex-col justify-center items-center gap-8 pl-8">
+      <div className="flex-col hidden md:flex lg:flex justify-center items-center gap-8 pl-8">
         <h1 className="font-[Poppins] text-sm font-semibold text-[#4B5668]">
          01
         </h1>
@@ -26,35 +23,33 @@ const Home = () => {
          03
         </h1>
       </div>
-
-
-     <div className="flex-1 h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar">
+     <div className="flex-1 h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth no-scrollbar mb-4 md:mb-0 lg:mb-0">
         {coffees.map((coffee, index) => (
           <section
             key={coffee?.id || index}
 
-            className="w-full h-full snap-start flex items-center justify-between px-8 pt-16 "
+            className="w-full h-full flex-col-reverse md:flex-row lg:flex-row snap-start flex items-center justify-between pt-16 "
           >
 
-            <div className="w-1/2 pl-20">
-              <h1 className="font-[Poppins] font-extrabold text-7xl leading-none">
+            <div className="w-full px-8 md:w-1/2 lg:w-1/2 md:pl-20 lg:pl-20">
+              <h1 className="font-[Poppins] font-bold md:font-extrabold lg:font-extrabold text-4xl md:text-6xl lg:text-7xl leading-none">
                 {coffee?.title}
               </h1>
-              <h1 className="font-[Poppins] font-extrabold text-7xl leading-none text-[#4B5668] mt-2">
+              <h1 className="font-[Poppins] font-bold md:font-extrabold lg:font-extrabold text-4xl md:text-6xl lg:text-7xl leading-none text-[#4B5668] mt-2">
                 {coffee?.subtitle}
               </h1>
-              <p className="text-justify font-[Poppins] text-[#4B5668] pt-6">
+              <p className="text-justify font-[Poppins] text-[#4B5668] text-0.5 pt-6">
                 {coffee?.description}
               </p>
 
               <div className="flex justify-between pt-4">
                 <div className="cursor-pointer">
-                  <h2 className="font-[Poppins] font-semibold text-xl text-[#9CA3AD]">
+                  <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-0.5 text-[#9CA3AD]">
                     Price: {coffee?.price}
                   </h2>
                 </div>
                 <div className="cursor-pointer">
-                  <h2 className="font-[Poppins] font-semibold text-xl text-[#9CA3AD]">
+                  <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-0.5 text-[#9CA3AD]">
                     Know Recipe &nbsp;⟶
                   </h2>
                 </div>
@@ -66,10 +61,9 @@ const Home = () => {
               </button>
             </div>
 
-
-            <div className="w-1/2 flex justify-center items-center">
+            <div className="w-fit md:w-1/2 lg:w-1/2 h-full flex justify-center items-center">
               <img
-                className="w-[70%] object-contain"
+                className="w-[60%] h-full object-contain"
                 src={coffee?.image}
                 alt={coffee?.title || "Coffee"}
               />
