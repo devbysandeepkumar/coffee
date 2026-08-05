@@ -9,13 +9,12 @@ const SideIndicator = ({ children, total = 3 }) => {
     if (!container) return
 
     const sections = container.querySelectorAll("section")
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = Array.from(sections).indexOf(entry.target)
-            setActive(index)
+            if (index !== -1) setActive(index)
           }
         })
       },
@@ -24,16 +23,15 @@ const SideIndicator = ({ children, total = 3 }) => {
 
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [])
+  }, [children]) // Re-run if children dynamically change
 
-  // Only show prev, current, next
+  // Calculate visible indices (prev, current, next)
   const visible = [active - 1, active, active + 1].filter(
     (i) => i >= 0 && i < total
   )
 
   return (
-    <div className="flex flex-1 min-h-0 overflow-hidden">
-
+    <div className=" md:flex-1 min-h-0 hidden md:flex overflow-hidden">
       {/* Side numbers */}
       <div className="hidden md:flex flex-col justify-center items-center gap-8 pl-8 shrink-0">
         {visible.map((i) => {
@@ -62,7 +60,6 @@ const SideIndicator = ({ children, total = 3 }) => {
       >
         {children}
       </div>
-
     </div>
   )
 }
