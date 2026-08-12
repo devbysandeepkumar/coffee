@@ -1,6 +1,6 @@
+import Coffee from "../../components/Coffee"
 import Header from "../../components/Header"
 import Main from "../../components/Main"
-import Coffee from "../components/Coffee"
 
 const Recipe = () => {
   return (
