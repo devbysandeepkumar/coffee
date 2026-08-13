@@ -69,24 +69,24 @@ const Coffee = () => {
             {id ? (
               <div className="mt-4 md:mt-6">
                 {/* Stats Row */}
-                <div className="flex justify-between items-center bg-gray-50/50 rounded-xl p-3 mb-4 border border-gray-100">
+                <div className="flex justify-between items-center ">
                   <div className="text-center">
-                    <span className="text-[10px] md:text-xs text-[#4B5668] uppercase tracking-wider">Serving</span>
-                    <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-800 mt-1">
+                    <span className="text-[10px] md:text-xs text-white uppercase tracking-wider">Serving</span>
+                    <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-200 mt-1">
                       {coffee?.servings}
                     </h2>
                   </div>
                   <div className="w-px h-8 bg-gray-200"></div>
                   <div className="text-center">
-                    <span className="text-[10px] md:text-xs text-[#4B5668] uppercase tracking-wider">Prep Time</span>
-                    <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-800 mt-1">
+                    <span className="text-[10px] md:text-xs text-white uppercase tracking-wider">Prep Time</span>
+                    <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-200 mt-1">
                       {coffee?.prepTime}
                     </h2>
                   </div>
                   <div className="w-px h-8 bg-gray-200"></div>
                   <div className="text-center">
-                    <span className="text-[10px] md:text-xs text-[#4B5668] uppercase tracking-wider">Difficulty</span>
-                    <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-800 mt-1">
+                    <span className="text-[10px] md:text-xs text-white uppercase tracking-wider">Difficulty</span>
+                    <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-200 mt-1">
                       {coffee?.difficulty}
                     </h2>
                   </div>
@@ -104,7 +104,7 @@ const Coffee = () => {
                         {coffee.ingredients.map((item, index) => (
                           <span
                             key={index}
-                            className="font-[Poppins] text-[11px] md:text-xs font-light tracking-wide text-gray-600 flex items-start gap-2"
+                            className="font-[Poppins] text-[11px] md:text-xs font-light tracking-wide text-gray-400 flex items-start gap-2"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] shrink-0 mt-1" />
                             {item}
@@ -124,7 +124,7 @@ const Coffee = () => {
                         {coffee.tools.map((item, index) => (
                           <span
                             key={index}
-                            className="font-[Poppins] text-[11px] md:text-xs font-light tracking-wide text-gray-600 flex items-start gap-2"
+                            className="font-[Poppins] text-[11px] md:text-xs font-light tracking-wide text-gray-400 flex items-start gap-2"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96E] shrink-0 mt-1" />
                             {item}
@@ -139,10 +139,10 @@ const Coffee = () => {
               <div className="pt-6 md:pt-8">
                 <button
                   onClick={() => navigate(`/recipe/${coffee?.id}`)}
-                  className="px-6 py-3 md:px-8 md:py-4 bg-amber-400 hover:bg-amber-500 transition-colors cursor-pointer rounded-sm shadow-md"
+                  className="px-6 py-3 md:px-8 md:py-4 bg-amber-400 hover:bg-amber-500 transition-colors cursor-pointer shadow-md"
                 >
                   <span className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-900 tracking-wide uppercase">
-                    View Recipe &nbsp;⟶
+                    Know Recipe &nbsp;⟶
                   </span>
                 </button>
               </div>
