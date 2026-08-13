@@ -1,4 +1,3 @@
-import { CgCoffee } from "react-icons/cg";
 import { coffees } from "../store/data";
 import { useNavigate, useParams } from "react-router";
 import { useRef } from "react";
@@ -47,7 +46,7 @@ const Coffee = () => {
   return (
     <div
       ref={container}
-      className="flex-1 h-full md:overflow-y-scroll md:snap-y md:snap-mandatory scroll-smooth no-scrollbar mb-4 md:mb-0 lg:mb-0"
+      className="flex-1 h-full md:overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth no-scrollbar"
     >
       {data.map((coffee) => (
         <section
@@ -68,91 +67,86 @@ const Coffee = () => {
 
             {id ? (
               <>
-                <div className="flex justify-between pt-4">
-                  <div className="cursor-pointer">
-                    <span className="text-xs text-[#4B5668]">Serving</span> {/* ✅ text-0.5 is invalid, use text-xs */}
-                    <h2 className="font-[Poppins] font-medium md:font-bold lg:font-bold text-xs text-[#9CA3AD]">
-                      {coffee?.servings}
-                    </h2>
-                  </div>
-                  <div className="cursor-pointer">
-                    <span className="text-xs text-[#4B5668]">Prep Time</span>
-                    <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-xs text-[#9CA3AD]">
-                      {coffee?.prepTime}
-                    </h2>
-                  </div>
-                  <div className="cursor-pointer">
-                    <span className="text-xs text-[#4B5668]">Difficulty</span>
-                    <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-xs text-[#9CA3AD]">
-                      {coffee?.difficulty}
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="flex justify-between py-3 gap-8">
-
-                  {/* Ingredients */}
-                  <div className="flex flex-col gap-2">
-                    <h2 className="font-[Cormorant_Garamond] italic text-lg font-semibold tracking-widest text-[#C9A96E] uppercase mb-2">
-                      Ingredients
-                    </h2>
-                    <div className="flex flex-col gap-1">
-                      {coffee.ingredients.map((item, index) => (
-                        <span
-                          key={index}
-                          className="font-[Poppins] text-xs font-light tracking-wider text-[#9CA3AD] flex items-center gap-2"
-                        >
-                          <span className="w-1 h-1 rounded-full bg-[#C9A96E] inline-block" /> {/* ✅ gold dot */}
-                          {item}
-                        </span>
-                      ))}
+                  {/* Stats Row */}
+                  <div className="flex justify-between pt-4">
+                    <div className="cursor-pointer">
+                      <span className="text-xs text-[#4B5668]">Serving</span>
+                      <h2 className="font-[Poppins] font-medium md:font-bold lg:font-bold text-xs text-[#9CA3AD]">
+                        {coffee?.servings}
+                      </h2>
+                    </div>
+                    <div className="cursor-pointer">
+                      <span className="text-xs text-[#4B5668]">Prep Time</span>
+                      <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-xs text-[#9CA3AD]">
+                        {coffee?.prepTime}
+                      </h2>
+                    </div>
+                    <div className="cursor-pointer">
+                      <span className="text-xs text-[#4B5668]">Difficulty</span>
+                      <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-xs text-[#9CA3AD]">
+                        {coffee?.difficulty}
+                      </h2>
                     </div>
                   </div>
 
-                  {/* Divider */}
-                  <div className="w-px bg-[#C9A96E] opacity-30 self-stretch" /> {/* ✅ vertical gold line */}
+                  {/* ✅ Scrollable wrapper on mobile only */}
+                  <div className="overflow-y-auto max-h-[30vh] md:max-h-none md:overflow-visible no-scrollbar">
+                    <div className="flex justify-between py-3 gap-8">
 
-                  {/* Tools */}
-                  <div className="flex flex-col gap-2">
-                    <h2 className="font-[Cormorant_Garamond] italic text-lg font-semibold tracking-widest text-[#C9A96E] uppercase mb-2">
-                      Tools You Need
-                    </h2>
-                    <div className="flex flex-col gap-1">
-                      {coffee.tools.map((item, index) => (
-                        <span
-                          key={index}
-                          className="font-[Poppins] text-xs font-light tracking-wider text-[#9CA3AD] flex items-center gap-2"
-                        >
-                          <span className="w-1 h-1 rounded-full bg-[#C9A96E] inline-block" /> {/* ✅ gold dot */}
-                          {item}
-                        </span>
-                      ))}
+                      {/* Ingredients */}
+                      <div className="flex flex-col gap-2">
+                        <h2 className="font-[Cormorant_Garamond] italic text-lg font-semibold tracking-widest text-[#C9A96E] uppercase mb-2">
+                          Ingredients
+                        </h2>
+                        <div className="flex flex-col gap-1">
+                          {coffee.ingredients.map((item, index) => (
+                            <span
+                              key={index}
+                              className="font-[Poppins] text-xs font-light tracking-wider text-[#9CA3AD] flex items-center gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-[#C9A96E] inline-block" />
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="w-px bg-[#C9A96E] opacity-30 self-stretch" />
+
+                      {/* Tools */}
+                      <div className="flex flex-col gap-2">
+                        <h2 className="font-[Cormorant_Garamond] italic text-lg font-semibold tracking-widest text-[#C9A96E] uppercase mb-2">
+                          Tools You Need
+                        </h2>
+                        <div className="flex flex-col gap-1">
+                          {coffee.tools.map((item, index) => (
+                            <span
+                              key={index}
+                              className="font-[Poppins] text-xs font-light tracking-wider text-[#9CA3AD] flex items-center gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-[#C9A96E] inline-block" />
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
                     </div>
                   </div>
-
-                </div>
-              </>
+                </>
             ) : (
               <>
-                <div className="flex justify-between pt-4">
-                  <div className="cursor-pointer">
-                    <h2 className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-sm text-[#9CA3AD]">
-                      Price: {coffee?.price}
-                    </h2>
-                  </div>
-                  <div className="cursor-pointer">
+                <div className="flex pt-8">
+                  <button className="px-4 py-3 bg-amber-400 cursor-pointer">
                     <h2
                       onClick={() => navigate(`/recipe/${coffee?.id}`)}
-                      className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-sm text-[#9CA3AD]"
+                      className="font-[Poppins] font-medium md:font-semibold lg:font-semibold text-sm text-black"
                     >
                       Know Recipe &nbsp;⟶
                     </h2>
-                  </div>
+                  </button>
                 </div>
-                <button className="ring-1 ring-[#9CA3AD] rounded-3xl flex items-center text-[#9CA3AD] font-[Poppins] font-medium text-xs px-4 py-3 mt-5 cursor-pointer">
-                  <CgCoffee className="inline-block mr-2" />
-                  Add To Order
-                </button>
               </>
             )}
           </div>
