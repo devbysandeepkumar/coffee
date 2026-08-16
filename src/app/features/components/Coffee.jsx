@@ -1,5 +1,5 @@
 import { coffees } from "../store/data";
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -9,10 +9,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Coffee = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const result = location.state ?? {};
   const container = useRef(null);
   const navigate = useNavigate();
 
-  const data = !id ? coffees : coffees.filter((coffee) => String(coffee?.id) === id);
+  const hasResult = result && Object.keys(result).length > 0;
+
+  const data = hasResult
+    ? (Array.isArray(result) ? result : [result])
+    : id
+      ? coffees.filter((coffee) => String(coffee?.id) === String(id))
+      : coffees;
 
   useGSAP(() => {
     const sections = gsap.utils.toArray(".coffee-section", container.current);
@@ -44,12 +52,11 @@ const Coffee = () => {
   }, { scope: container });
 
   return (
-    // Fixed container: takes full viewport height minus header, handles CSS snapping
     <div
       ref={container}
       className="w-full h-[calc(100dvh-4rem)] mt-16 overflow-y-auto snap-y snap-mandatory scroll-smooth no-scrollbar"
     >
-      {data.map((coffee) => (
+      {data?.map((coffee) => (
         <section
           key={coffee?.id}
           className="coffee-section w-full h-full snap-start snap-always flex flex-col-reverse md:flex-row items-center justify-center"
@@ -66,21 +73,21 @@ const Coffee = () => {
               {coffee?.description}
             </p>
 
-            {id ? (
+            {id ||hasResult ? (
               <div className="mt-4 md:mt-6">
                 {/* Stats Row */}
                 <div className="flex justify-between items-center ">
                   <div className="text-center">
                     <span className="text-[10px] md:text-xs text-white uppercase tracking-wider">Serving</span>
                     <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-200 mt-1">
-                      {coffee?.servings}
+                      {coffee?.servings||coffee?.serving}
                     </h2>
                   </div>
                   <div className="w-px h-8 bg-gray-200"></div>
                   <div className="text-center">
                     <span className="text-[10px] md:text-xs text-white uppercase tracking-wider">Prep Time</span>
                     <h2 className="font-[Poppins] font-semibold text-xs md:text-sm text-gray-200 mt-1">
-                      {coffee?.prepTime}
+                      {coffee?.prepTime ||coffee?.preparationTime}
                     </h2>
                   </div>
                   <div className="w-px h-8 bg-gray-200"></div>

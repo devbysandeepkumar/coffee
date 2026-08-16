@@ -3,15 +3,17 @@ import { useNavigate } from "react-router";
 import { CgMenuRight } from "react-icons/cg";
 import { RiSearch2Fill } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
-import { Home, Coffee, Heart } from "iconsax-reactjs";
+import { Home, Coffee, Heart, Wanchain } from "iconsax-reactjs";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Search from "./Search";
 import { coffees } from "../store/data";
+import { useCoffee } from "../coffee/hooks/useCoffee";
 
 const Header = () => {
   const navigate = useNavigate();
   const navContainer = useRef(null);
+  const { fetchCoffee } = useCoffee();
   const [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -38,17 +40,31 @@ const Header = () => {
     }
   }, { dependencies: [isOpen] });
 
-  const searches = value.trim()
+  const searchValue = value.trim().toLowerCase();
+
+  const searches = searchValue
     ? coffees.filter((item) =>
-        item.title.toLowerCase().includes(value.toLowerCase())
+        item.title.toLowerCase().includes(searchValue)
       )
     : [];
+
+  const handleSearch = async (value) => {
+    try {
+      const response = await fetchCoffee(value);
+      if (response) {
+        navigate("/recipe", {
+          state: response
+        })
+      }
+    } catch (error) {
+      console.error("Error searching coffee:", error);
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 h-16 bg-amber-400 z-50 shadow-md">
       <div className="flex h-full w-full justify-between items-center px-4 md:px-8 max-w-7xl mx-auto">
 
-        {/* Logo Section - Modern */}
         <div
           onClick={() => navigate("/")}
           className="h-10 flex items-center cursor-pointer z-10 shrink-0 select-none"
@@ -59,7 +75,6 @@ const Header = () => {
           </h1>
         </div>
 
-        {/* Center/Right Search Section */}
         <div className="flex flex-1 justify-end items-center px-4 z-10">
           <div className={`transition-all duration-300 ease-in-out flex items-center ${searchOpen ? 'w-full md:w-64 opacity-100' : 'w-0 opacity-0 overflow-hidden'}`}>
             {searchOpen && (
@@ -69,7 +84,6 @@ const Header = () => {
                   onChange={(e) => setValue(e.target.value)}
                 />
 
-                {/* Search Results Dropdown */}
                 {searches.length > 0 && (
                   <div className="absolute top-full mt-3 w-full bg-white shadow-xl rounded-xl z-50 max-h-64 overflow-y-auto border border-gray-100">
                     {searches.map((item) => (
@@ -94,8 +108,13 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Controls Section */}
         <div className="flex items-center gap-5 z-10 shrink-0">
+          <button
+            onClick={() => handleSearch(value)}
+            className="cursor-pointer hover:scale-110 transition-transform"
+          >
+            {searchOpen && <Wanchain size={24} color="#1F2937" />}
+          </button>
           <button
             onClick={() => {
                 setSearchOpen(!searchOpen);
@@ -103,7 +122,7 @@ const Header = () => {
             }}
             className="cursor-pointer hover:scale-110 transition-transform"
           >
-            {searchOpen ? <IoClose size={24} color="#1F2937" /> : <RiSearch2Fill size={24} color="#1F2937" />}
+            {searchOpen ? <IoClose size={24} color="#1F2937" />: <RiSearch2Fill size={24} color="#1F2937" />}
           </button>
 
           <button
@@ -119,7 +138,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile/Side Navigation Menu */}
       <nav
         ref={navContainer}
         style={{ display: 'none' }}
