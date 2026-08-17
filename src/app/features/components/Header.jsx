@@ -113,7 +113,7 @@ const Header = () => {
             onClick={() => handleSearch(value)}
             className="cursor-pointer hover:scale-110 transition-transform"
           >
-            {searchOpen && <Wanchain size={24} color="#1F2937" />}
+            {searchOpen && <Wanchain size={24} variant="Bulk" color="#1F2937" />}
           </button>
           <button
             onClick={() => {
