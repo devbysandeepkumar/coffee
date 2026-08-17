@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://coffee-api-ttag.onrender.com";
 
 export const searchCoffee = async (value) => {
   const response = await fetch(`${baseUrl}/api/search?name=${value}`, {
