@@ -23,6 +23,31 @@
 
 <br/>
 
+## 📸 Preview
+
+<div align="center">
+
+**Recipe landing page**
+<img src="https://ik.imagekit.io/2xanijumqs/coffee/hero-latte.png" alt="Classic Latte hero section" width="100%" />
+
+<br/>
+
+**Structured recipe detail — serving, prep time, difficulty, ingredients & tools**
+<img src="https://ik.imagekit.io/2xanijumqs/coffee/recipe-latte.png" alt="Classic Latte recipe details" width="100%" />
+
+<br/>
+
+**🔍 Search → 🤖 AI Agent searches the web → 📦 Structured recipe output**
+<img src="https://ik.imagekit.io/2xanijumqs/coffee/search-americano.png" alt="Search bar with AI agent finding a coffee recipe from the web" width="100%" />
+
+<br/>
+
+<img src="https://ik.imagekit.io/2xanijumqs/coffee/recipe-americano.png" alt="Cold Americano recipe details" width="100%" />
+
+</div>
+
+<br/>
+
 ## ✨ Overview
 
 **Coffee** is a recipe web app for exploring the world of coffee — brewing recipes, origins, and trends — brought to life with buttery-smooth scroll animations on the frontend and a real, reasoning AI agent on the backend.
@@ -127,15 +152,12 @@ TAVILY_API_KEY=your_tavily_api_key
 ### Run Locally
 
 ```bash
-# Start the backend (AI engine)
-cd server
-npm run dev
-
-# In a separate terminal, start the frontend
+start the frontend
 npm run dev
 ```
 
 Then open **http://localhost:5173** in your browser. ☕
+
 <br/>
 
 ## 🎨 Design Language
