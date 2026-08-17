@@ -64,7 +64,7 @@ const Coffee = () => {
           {/* Content Wrapper - Bottom on mobile (55% height), Left on desktop (50% width) */}
           <div className="coffee-content w-full h-[55%] md:h-full md:w-1/2 flex flex-col justify-center px-6 md:px-12 lg:px-24 pb-6 md:pb-0">
             <h1 className="font-[Poppins] font-bold md:font-extrabold text-4xl md:text-5xl lg:text-7xl leading-tight">
-              {coffee?.title}
+              {coffee?.title ||coffee?.name}
             </h1>
             <h1 className="font-[Poppins] font-bold md:font-extrabold text-3xl md:text-5xl lg:text-7xl leading-none text-[#4B5668] mt-1 md:mt-2">
               {coffee?.subtitle}

@@ -8,6 +8,5 @@ export const searchCoffee = async (value) => {
     throw new Error("Failed to search coffee");
   }
   const data = await response.json();
-  console.log("API search response:", data);
   return data;
 };
