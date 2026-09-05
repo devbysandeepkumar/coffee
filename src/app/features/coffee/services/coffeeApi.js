@@ -1,4 +1,4 @@
-const baseUrl = "https://coffee-api-ttag.onrender.com";
+const baseUrl = "https://coffee-api-lime.vercel.app";
 
 export const searchCoffee = async (value) => {
   const response = await fetch(`${baseUrl}/api/search?name=${value}`, {
